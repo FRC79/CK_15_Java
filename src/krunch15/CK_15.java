@@ -18,7 +18,7 @@ import krunch15.drivetrain.ShiftToInverted;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class CK_17 extends IterativeRobot {
+public class CK_15 extends IterativeRobot {
 
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
             toggleShiftCommand;
