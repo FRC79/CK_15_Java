@@ -3,6 +3,7 @@ package krunch15;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -18,6 +19,8 @@ public class RobotMap {
  
     public static CANJaguar leftFrontMotor, rightFrontMotor, leftRearMotor,
             rightRearMotor;
+    public static CANJaguar upperIntakeMotor, lowerIntakeMotor;
+    public static DigitalInput lowerIntakeSwitch, upperIntakeSwitch;
     public static RobotDrive robotDrive;
     public static Compressor compressor;
     public static DoubleSolenoid sonicShifter;
@@ -38,9 +41,17 @@ public class RobotMap {
             leftRearMotor = new CANJaguar(4);
             rightFrontMotor = new CANJaguar(2);
             rightRearMotor = new CANJaguar(3);
+            
+            lowerIntakeMotor = new CANJaguar(6);
+            upperIntakeMotor = new CANJaguar(7);
+            
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
+        
+        // Sensors for ball riding up intake
+        lowerIntakeSwitch = new DigitalInput(13);
+        upperIntakeSwitch = new DigitalInput(14);
         
         // Init Compressor (pressureSwitchChannel,compressorRelayChannel)
         compressor = new Compressor(1,8);
