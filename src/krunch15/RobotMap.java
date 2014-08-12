@@ -19,7 +19,7 @@ public class RobotMap {
  
     public static CANJaguar leftFrontMotor, rightFrontMotor, leftRearMotor,
             rightRearMotor;
-    public static CANJaguar upperIntakeMotor, lowerIntakeMotor;
+    public static CANJaguar collectorMotor, upperConveyerMotor, lowerConveyerMotor;
     public static DigitalInput lowerIntakeSwitch, upperIntakeSwitch;
     public static RobotDrive robotDrive;
     public static Compressor compressor;
@@ -42,8 +42,9 @@ public class RobotMap {
             rightFrontMotor = new CANJaguar(2);
             rightRearMotor = new CANJaguar(3);
             
-            lowerIntakeMotor = new CANJaguar(6);
-            upperIntakeMotor = new CANJaguar(7);
+            collectorMotor = new CANJaguar(6);
+            lowerConveyerMotor = new CANJaguar(7);
+            upperConveyerMotor = new CANJaguar(8);
             
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();

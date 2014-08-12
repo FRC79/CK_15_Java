@@ -17,114 +17,51 @@ import krunch15.RobotMap;
  */
 public class Intake extends Subsystem {
 
-    int ballCount, prevBallCount;
-    boolean isReversed, prevUpperState, prevLowerState;
-    
-    CANJaguar lowerRollers, upperRollers;
+    CANJaguar collector, lowerRollers, upperRollers;
     DigitalInput lowerSwitch, upperSwitch;
     
     public Intake(){
-        lowerRollers = RobotMap.lowerIntakeMotor;
-        upperRollers = RobotMap.upperIntakeMotor;
+        collector = RobotMap.collectorMotor;
+        lowerRollers = RobotMap.lowerConveyerMotor;
+        upperRollers = RobotMap.upperConveyerMotor;
         lowerSwitch = RobotMap.lowerIntakeSwitch;
         upperSwitch = RobotMap.upperIntakeSwitch;
     }
-    
-    public void init(){
-        ballCount = prevBallCount = 0;
-        isReversed = false;
-        prevUpperState = prevLowerState = false;
-    }
-    
-    public void enableLowerRollers(){
+
+    public void setCollector(double power){
         try {
-            isReversed = false;
-            lowerRollers.setX(1.0);
+            collector.setX(-power);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
     }
     
-    public void enableUpperRollers(){
+    public void setLowerRollers(double power){
         try {
-            isReversed = false;
-            upperRollers.setX(1.0);
+            lowerRollers.setX(power);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
     }
     
-    public void enableRollers(){
-        enableLowerRollers();
-        enableUpperRollers();
-    }
-    
-    public void disableLowerRollers(){
+    public void setUpperRollers(double power){
         try {
-            isReversed = false;
-            lowerRollers.setX(0.0);
-        } catch (CANTimeoutException ex){
+            upperRollers.setX(power);
+        } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
     }
     
-    public void disableUpperRollers(){
-        try {
-            isReversed = false;
-            upperRollers.setX(0.0);
-        } catch (CANTimeoutException ex){
-            ex.printStackTrace();
-        }
+    public void stopCollector(){
+        setCollector(0.0);
     }
     
-    public void disableRollers(){
-        disableLowerRollers();
-        disableUpperRollers();
+    public void stopLowerRollers(){
+        setLowerRollers(0.0);
     }
     
-    public void grabBall(){
-        // If we don't have ball turn on the rollers
-        if(upperSwitch.get()){
-            enableRollers();
-        } else {
-            disableUpperRollers();
-            enableLowerRollers();
-        }
-    }
-    
-    public void processBallStates(){
-        if(!isReversed){
-            if(upperSwitch.get() != prevUpperState){
-                if(prevUpperState == true){
-                    ballCount--;
-                } else {
-                    ballCount++;
-                }
-            }
-            
-            if(lowerSwitch.get() != prevLowerState){
-                if(prevLowerState == false){
-                    ballCount++;
-                }
-            }
-        } else {
-            if(upperSwitch.get() != prevUpperState){
-                if(prevUpperState == true){
-                    ballCount++;
-                } else {
-                    ballCount--;
-                }
-            }
-            
-            if(lowerSwitch.get() != prevLowerState){
-                if(prevLowerState == false){
-                    ballCount--;
-                }
-            }
-        }
-        
-        prevLowerState = lowerSwitch.get();
-        prevUpperState = upperSwitch.get();
+    public void stopUpperRollers(){
+        setUpperRollers(0.0);
     }
     
     public void initDefaultCommand() {

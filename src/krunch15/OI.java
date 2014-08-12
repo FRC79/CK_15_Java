@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
     
     public Joystick driverJoystick, shooterGamepad;
-    public JoystickButton shiftButton;
+    public JoystickButton shiftButton, collectButton, reverseCollectorButton;
     
     public OI()
     {
@@ -21,6 +21,9 @@ public class OI {
         
         // Init joystick buttons
         shiftButton = new JoystickButton(driverJoystick, 8);
+        
+        collectButton = new JoystickButton(shooterGamepad, 8);
+        reverseCollectorButton = new JoystickButton(shooterGamepad, 3);
     }
 
     public Joystick getDriverJoystick() {

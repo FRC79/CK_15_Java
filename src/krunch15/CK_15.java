@@ -21,7 +21,8 @@ import krunch15.drivetrain.ShiftToInverted;
 public class CK_15 extends IterativeRobot {
 
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            toggleShiftCommand;
+            toggleShiftCommand, collectCommand, reverseCollectorCommand,
+            conveyerCommand;
 
     public void robotInit() {
         // Initialize all subsystems
@@ -36,6 +37,9 @@ public class CK_15 extends IterativeRobot {
         
         // Map commands to buttons
         CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
+        
+        CommandBase.oi.collectButton.whileHeld(collectCommand);
+        CommandBase.oi.reverseCollectorButton.whileHeld(reverseCollectorCommand);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
@@ -58,8 +62,9 @@ public class CK_15 extends IterativeRobot {
     public void teleopInit() {
 //        autonomousCommand.cancel(); // Make sure auton is finished
         RobotMap.compressor.start(); // Start compressor
-        initialShiftCommand.start();
+        initialShiftCommand.start(); // Gear shift toggle
         arcadeDriveCommand.start(); // Start teleop arcade drive
+        conveyerCommand.start(); // Ball conveyer manipulation
     }
 
     /**
