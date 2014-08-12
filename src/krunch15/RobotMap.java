@@ -23,7 +23,7 @@ public class RobotMap {
     public static DigitalInput lowerIntakeSwitch, upperIntakeSwitch;
     public static RobotDrive robotDrive;
     public static Compressor compressor;
-    public static DoubleSolenoid sonicShifter;
+    public static DoubleSolenoid sonicShifter, bridgeTipperPistons;
     
     public static void init(){
         loadComponents(true); // Used to init CSVs and all components
@@ -42,9 +42,9 @@ public class RobotMap {
             rightFrontMotor = new CANJaguar(2);
             rightRearMotor = new CANJaguar(3);
             
-            collectorMotor = new CANJaguar(6);
+            collectorMotor = new CANJaguar(9);
             lowerConveyerMotor = new CANJaguar(7);
-            upperConveyerMotor = new CANJaguar(8);
+            upperConveyerMotor = new CANJaguar(6);
             
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
@@ -59,5 +59,6 @@ public class RobotMap {
 
         // Init Solenoids
         sonicShifter = new DoubleSolenoid(8,7);     // (forward ch., reverse ch.)
+        bridgeTipperPistons = new DoubleSolenoid(4, 3);
     }
 }

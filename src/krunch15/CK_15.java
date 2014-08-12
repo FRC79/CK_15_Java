@@ -22,13 +22,13 @@ public class CK_15 extends IterativeRobot {
 
     Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
             toggleShiftCommand, collectCommand, reverseCollectorCommand,
-            conveyerCommand;
+            conveyerCommand, invertBridgeTipperCommand;
 
     public void robotInit() {
         // Initialize all subsystems
         RobotMap.init();
         CommandBase.init();
-        
+
         // instantiate commands
 //        autonomousCommand = new DriveStraight();
         arcadeDriveCommand = new ArcadeDrive();
@@ -40,6 +40,7 @@ public class CK_15 extends IterativeRobot {
         
         CommandBase.oi.collectButton.whileHeld(collectCommand);
         CommandBase.oi.reverseCollectorButton.whileHeld(reverseCollectorCommand);
+        CommandBase.oi.invertBridgeTipperButton.whenPressed(invertBridgeTipperCommand);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
