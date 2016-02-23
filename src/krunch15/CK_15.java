@@ -6,10 +6,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import krunch15.drivetrain.ArcadeDrive;
-import krunch15.drivetrain.DriveStraight;
-import krunch15.drivetrain.ShiftToHighGear;
-import krunch15.drivetrain.ShiftToInverted;
+import krunch15.commands.teleop.Teleop;
+import krunch15.subsystems.compressor.StopCompressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,46 +18,38 @@ import krunch15.drivetrain.ShiftToInverted;
  */
 public class CK_15 extends IterativeRobot {
 
-    Command autonomousCommand, arcadeDriveCommand, initialShiftCommand,
-            toggleShiftCommand;
+    Command teleop, stopCompressor;
 
     public void robotInit() {
-        // Initialize all subsystems
-        RobotMap.init();
+        
+        // initialize OI befor the creation of subsystems
+        OI.init();
         CommandBase.init();
         
         // instantiate commands
-//        autonomousCommand = new DriveStraight();
-        arcadeDriveCommand = new ArcadeDrive();
-        initialShiftCommand = new ShiftToHighGear();
-        toggleShiftCommand = new ShiftToInverted();
-        
-        // Map commands to buttons
-        CommandBase.oi.shiftButton.whenPressed(toggleShiftCommand);
+        teleop = new Teleop();
+        stopCompressor = new StopCompressor();
+        stopCompressor.setRunWhenDisabled(true);
         
         System.out.println("--------------------------------------");
         System.out.println("  robotInit() COMPLETE ");
         System.out.println("--------------------------------------");
+        
     }
 
     public void autonomousInit() {
-//        RobotMap.compressor.start(); // Start compressor
-        initialShiftCommand.start();
-//        autonomousCommand.start(); // schedule the autonomous command
+        
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+
     }
 
     public void teleopInit() {
-//        autonomousCommand.cancel(); // Make sure auton is finished
-        RobotMap.compressor.start(); // Start compressor
-        initialShiftCommand.start();
-        arcadeDriveCommand.start(); // Start teleop arcade drive
+        new Teleop().start();
     }
 
     /**
@@ -72,12 +62,12 @@ public class CK_15 extends IterativeRobot {
     
     public void disabledInit() {
         Scheduler.getInstance().removeAll(); // Stop all commands
-        RobotMap.compressor.stop(); // Stop compressor
     }
 
     public void testInit() {
-//        RobotMap.compressor.start();  // Start compressor
+
     }
+    
     /**
      * This function is called periodically during test mode
      */

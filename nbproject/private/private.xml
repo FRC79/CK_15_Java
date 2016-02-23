@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/subsystems/drivetrain/Drivetrain.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/commands/teleop/ArcadeDrive.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/subsystems/intake/IntakeMechanism.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/subsystems/cannon/FiringMechanism.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/commands/teleop/ManipulateIntake.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/commands/teleop/ManipulateFiring.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/CommandBase.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/CK_15.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/OI.java</file>
+            <file>file:/Users/toaster/NetBeansProjects/CK_15_Java-master/src/krunch15/RobotMap.java</file>
+        </group>
+    </open-files>
+</project-private>

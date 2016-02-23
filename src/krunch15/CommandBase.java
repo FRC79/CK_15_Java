@@ -1,8 +1,10 @@
 package krunch15;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import krunch15.drivetrain.Drivetrain;
+import krunch15.subsystems.cannon.FiringMechanism;
+import krunch15.subsystems.drivetrain.Drivetrain;
+import krunch15.subsystems.compressor.CompressorMechanism;
+import krunch15.subsystems.intake.IntakeMechanism;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -16,17 +18,17 @@ public abstract class CommandBase extends Command {
     
     // Create a single static instance of all of your subsystems
     public static Drivetrain drive;
+    public static CompressorMechanism compressor;
+    public static IntakeMechanism intake;
+    public static FiringMechanism fire;
     
     public static void init() {
-        // This MUST be here. If the OI creates Commands (which it very likely
-        // will), constructing it during the construction of CommandBase (from
-        // which commands extend), subsystems are not guaranteed to be
-        // yet. Thus, their requires() statements may grab null pointers. Bad
-        // news. Don't move it.
-        oi = new OI();
-        
-        // Show what command your subsystem is running on the SmartDashboard
+
         drive = new Drivetrain();
+        compressor = new CompressorMechanism();
+        intake = new IntakeMechanism();
+        fire = new FiringMechanism();
+        
     }
 
     public CommandBase(String name) {
